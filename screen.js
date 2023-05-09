@@ -131,7 +131,6 @@ function infixPos(infix){
                 else{
                     let stackTop = stack.pop(); //The last element of the array
                     while(stackTop && !precedence(infix[i], stack[stack.length-1]) && stackTop!=='('){
-                        console.log(infix[i]);
                         postfix.push(stackTop);
                         stackTop = stack.pop();
                     }
