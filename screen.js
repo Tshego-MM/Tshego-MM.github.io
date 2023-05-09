@@ -7,7 +7,7 @@ function calculate(operand1, operand2, operator){
         case "-":
             results = operand1-operand2;
             break;
-        case "/":
+        case "÷":
             if(operand2===0){
                 throw new Error("Division by zero is not allowed");  
             }
@@ -15,7 +15,7 @@ function calculate(operand1, operand2, operator){
                 results = operand1/operand2;
             }
             break;
-        case "*":
+        case "×":
             results = operand1*operand2;
             break;
         case '^':
@@ -50,6 +50,12 @@ function sci(operand, operator){
                 results = Math.tan(operand);
             }
             break;
+        case '√':
+            results = Math.sqrt(operand);
+            break;
+        case '%':
+            results = (operand/100);
+            break;
     }
     
     return results;
@@ -67,10 +73,10 @@ function precValue(operator){
         case '+':
             value = 4;
             break;
-        case '*':
+        case '×':
             value = 3;
             break;
-        case '/':
+        case '÷':
             value = 2;
             break;
         case '(':
@@ -112,11 +118,10 @@ function infixPos(infix){
         else{
             if(infix[i]===')'){
                 let lastVal = stack.pop(); //The last element of the array
-                while(lastVal==='('){
+                while(lastVal && lastVal!=='('){
                     postfix.push(lastVal);
                     lastVal = stack.pop();
                 }
-                
             }
             else if(infix[i]==='('){
                 stack.push(infix[i]);
@@ -139,7 +144,7 @@ function infixPos(infix){
             }
         }
     }
-
+    
     while(stack.length>0){
         postfix.push(stack.pop())
     }
@@ -157,7 +162,7 @@ function compute(infix){
         else{
             try{
                 let res = 0, v1 = stack.pop();
-                if(postfix[i].includes('s') || postfix[i].includes('c') || postfix[i].includes('t')){
+                if(['√', '%', 's', 'c', 't'].includes(postfix[i])){
                     res = sci(v1, postfix[i]);
                 }
                 else{
@@ -196,10 +201,17 @@ function del(){
     return;
 }
 
-function clear(val){
+function clearScreen(){
     document.getElementById('screen').value = "";
     document.getElementById('output').value = "";
     return;
+}
+
+()=>{
+    const inputText = document.getElementById('screen');;
+    inputText.addEventListener('change', (event) => {
+        document.getElementById('output').value='';
+    });
 }
 
 function keyEvent(event){
@@ -231,6 +243,13 @@ function equalSign(){
     inputStr = inputStr.replace("sin", "s");
     inputStr = inputStr.replace("cos", "c");
     inputStr = inputStr.replace("tan", "t");
+    const pattern = /[)\d]{1}[sct]/g;  //This will find number implicitly multiplied by trig function (e.g 2sin(1)) and adds the multiplication
+    const toFix = inputStr.match(pattern); //contains the values to fix
+    if(toFix){
+        toFix.forEach(element => {
+            inputStr = inputStr.replaceAll(element, element.charAt(0)+'×'+element.charAt(1));
+        });
+    }
 
     for(let i=0; i<inputStr.length; ++i){
         if(inputStr.charAt(i)==='0' || +inputStr.charAt(i) || inputStr.charAt(i)==='.'){
