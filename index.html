@@ -3,7 +3,7 @@
     <head>
         <title>Calculator</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./calculator.css"></link>
+        <link rel="stylesheet" href="./index.css"></link>
         <script type = "text/javascript" src="./screen.js"></script>
     </head>
     <body>
@@ -17,9 +17,9 @@
                 <section class="arrows">
                     <button value='(' onclick="displayValue('(')">(</button>
                     <button value=')' onclick="displayValue(')')">)</button>
-                    <button>&lt;</button>
-                    <button>&gt;</button>
-                    <button onclick="clear()">C</button>
+                    <button onclick="displayValue('√(')">&radic;</button>
+                    <button onclick="displayValue('%')">%</button>
+                    <button onclick="clearScreen()">C</button>
                 </section>
                 <section class="sci">
                     <button value='s' onclick="displayValue('sin(')">sin(x)</button>
@@ -33,7 +33,7 @@
                         <button value=7 onclick="displayValue(7)">7</button>
                         <button value=8 onclick="displayValue(8)">8</button>
                         <button value=9 onclick="displayValue(9)">9</button>
-                        <button id="div" value='/' onclick="displayValue('/')">&div;</button>
+                        <button id="div" value='÷' onclick="displayValue('&div;')">&div;</button>
                     </section>
                     <section class="secRow">
                         <button value=4 onclick="displayValue(4)">4</button>
@@ -45,7 +45,7 @@
                         <button value=1 onclick="displayValue(1)">1</button>
                         <button value=2 onclick="displayValue(2)">2</button>
                         <button value=3 onclick="displayValue(3)">3</button>
-                        <button id="times" value='*' onclick="displayValue('*')">&times;</button>
+                        <button id="times" value='×' onclick="displayValue('&times;')">&times;</button>
                     </section>
                 </section>
                 <section  class="plus">
