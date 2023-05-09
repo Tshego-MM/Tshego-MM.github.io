@@ -1,0 +1,55 @@
+.app{
+    width: 345.6px;
+    border-style: dashed;
+    margin: auto;
+    background-color: aqua;
+}
+input.screen:focus{
+    outline-width: 0;
+}
+.screen{
+    border-color: black;
+    border-style: solid;
+    border-bottom-style: hidden;
+    width: 96.5%;
+    height: 50px;
+    background-color: white;
+}
+.output{
+    height: 30px;
+    width: 96.5%;
+    border-color: black;
+    border-style: solid;
+    border-top-style: hidden;
+    background-color: white;
+}
+.arrows{
+    width: 100%;
+}
+.zero{
+    width: 58.8%;
+}
+.equal{
+    width: 15%;
+}
+.dot{
+    width: 10%;
+}
+.grid{
+    display: grid;
+    float: left;
+}
+button{
+    min-width: 65px;
+    min-height: 70px;
+}
+.plus button{
+    height: 210px;
+    margin-left: 4px;
+}
+.plus{
+    margin-left: 10px;
+}
+.exponent{
+    padding-bottom: 4.5px;
+}
