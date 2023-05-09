@@ -130,7 +130,8 @@ function infixPos(infix){
                 }
                 else{
                     let stackTop = stack.pop(); //The last element of the array
-                    while(stack.length>0 && !precedence(infix[i], stack[stack.length-1]) && stackTop!=='('){
+                    while(stackTop && !precedence(infix[i], stack[stack.length-1]) && stackTop!=='('){
+                        console.log(infix[i]);
                         postfix.push(stackTop);
                         stackTop = stack.pop();
                     }
@@ -233,19 +234,18 @@ function equalSign(){
     inputStr = inputStr.replace("tan", "t");
 
     for(let i=0; i<inputStr.length; ++i){
-        console.log(inputStr.charAt(i))
         if(inputStr.charAt(i)==='0' || +inputStr.charAt(i) || inputStr.charAt(i)==='.'){
             tmpStr += inputStr.charAt(i);
         }
         else{
-            if(tmpStr.length!==0){
+            if(tmpStr.length>0){
                 inputArr.push(tmpStr);
                 tmpStr = "";
             }
             inputArr.push(inputStr.charAt(i));
         }
     }
-    if(tmpStr.length!==0){   //The last number from the string
+    if(tmpStr.length>0){   //The last number from the string
         inputArr.push(tmpStr);
         tmpStr = "";
     }
