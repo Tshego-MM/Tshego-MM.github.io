@@ -58,6 +58,15 @@
             </section>
         </section>
         
-        <script type = "module" src="./screen.js"></script>
+        <script type = "module">
+            import {displayValue, del, clearScreen, changeDetected, keyEvent, equalSign} from './screen.js';
+            
+            window.displayValue = displayValue;
+            window.del = del;
+            window.clearScreen = clearScreen;
+            window.changeDetected = changeDetected;
+            window.keyEvent = keyEvent;
+            window.equalSign = equalSign;
+        </script>
     </body>
 </html>
