@@ -51,7 +51,12 @@ function sci(operand, operator){
             }
             break;
         case '√':
-            results = Math.sqrt(operand);
+            if(operand<0){
+                throw new Error("Cannot find square root of negative numbers");
+            }
+            else{
+                results = Math.sqrt(operand);
+            }
             break;
         case '%':
             results = (operand/100);
@@ -243,8 +248,8 @@ function equalSign(){
     inputStr = inputStr.replace("sin", "s");
     inputStr = inputStr.replace("cos", "c");
     inputStr = inputStr.replace("tan", "t");
-    const pattern = /[)\d]{1}[sct]/g;  //This will find number implicitly multiplied by trig function (e.g 2sin(1)) and adds the multiplication
-    const toFix = inputStr.match(pattern); //contains the values to fix
+    const NoMultPattern = /[)\d]{1}[sct√]/g;  //This will find number implicitly multiplied by trig function (e.g 2sin(1)) and adds the multiplication
+    const toFix = inputStr.match(NoMultPattern); //contains the values to fix
     if(toFix){
         toFix.forEach(element => {
             inputStr = inputStr.replaceAll(element, element.charAt(0)+'×'+element.charAt(1));
@@ -259,6 +264,18 @@ function equalSign(){
             if(tmpStr.length>0){
                 inputArr.push(tmpStr);
                 tmpStr = "";
+            }
+            else if(inputStr.charAt(i)==='-'){
+                if(i===0){
+                    inputArr.push('-1');
+                    inputArr.push('×');
+                    continue;
+                }
+                else if(['+', '-', '÷', '×', '('].includes(inputStr.charAt(i-1))){
+                    inputArr.push('-1');
+                    inputArr.push('×');
+                    continue;
+                }
             }
             inputArr.push(inputStr.charAt(i));
         }
