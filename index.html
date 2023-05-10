@@ -4,13 +4,15 @@
         <title>Calculator</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="./index.css"></link>
-        <script type = "text/javascript" src="./screen.js"></script>
+        <script type = "module" src="./screen.js">
+            import {displayValue, del, clearScreen, changeDetected, keyEvent, equalSign} from './screen.js';
+        </script>
     </head>
     <body>
         <section class="app">
             <h3>Demo</h3>
             <section class="inputs">
-                <input type="text" id="screen" class="screen" value='' onkeydown="keyEvent(event)" />
+                <input type="text" id="screen" class="screen" value='' onkeydown="keyEvent(event)" onchange="changeDetected()" />
                 <input type="text" id="output" class="output" value='' disabled />
             </section>
             <section class="inputkeys">
