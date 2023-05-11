@@ -43,8 +43,8 @@ function sci(operand, operator){
             results = Math.cos(operand);
             break;
         case 't':
-            if(operand===0){
-                throw new Error("tan(0) is undefined");
+            if(Math.cos(operand)===0){
+                throw new Error("tan("+operand+") is undefined");
             }
             else{
                 results = Math.tan(operand);
