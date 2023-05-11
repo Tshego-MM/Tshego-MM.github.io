@@ -58,6 +58,9 @@ function keyEvent(event){
 function equalSign(){
     const inputStr = document.getElementById('screen').value;
     let calc = compute(inputStr);
+    if(isNaN(calc)){
+        calc = "Error";
+    }
     document.getElementById("output").value = '='+calc;
     return;
 }
