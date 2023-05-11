@@ -46,7 +46,7 @@ function keyEvent(event){
     }
     else if(event.key==='/'){
         event.preventDefault();
-        document.getElementById("screen").value += '&div;';
+        document.getElementById("screen").value += '÷';
     }
     else if(!allowedKeys.includes(event.key)){
         event.preventDefault();
