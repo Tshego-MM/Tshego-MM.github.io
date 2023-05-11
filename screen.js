@@ -42,7 +42,7 @@ function keyEvent(event){
         "+", "-"];
     if(event.key==='*'){
         event.preventDefault();
-        document.getElementById("screen").value += '&times;';
+        document.getElementById("screen").value += '×';
     }
     else if(event.key==='/'){
         event.preventDefault();
